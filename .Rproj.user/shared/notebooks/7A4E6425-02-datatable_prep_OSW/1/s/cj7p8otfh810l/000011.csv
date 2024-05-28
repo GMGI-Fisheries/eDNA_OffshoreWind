@@ -1,0 +1,7 @@
+"0","### add common name column to df"
+"0","ASV_table_taxID <- ASV_table_taxID %>%"
+"0","  left_join(., gmgi_db %>% dplyr::select(Species_name, Common_name, Category) %>% distinct(), by = ""Species_name"") %>%"
+"0","  relocate(., c(Common_name, Category), .after = Species_name)"
+"0",""
+"0","### print entries with no common name"
+"0","ASV_table_taxID %>% dplyr::select(Species_name, Common_name) %>% filter(is.na(Common_name)) %>% distinct()"

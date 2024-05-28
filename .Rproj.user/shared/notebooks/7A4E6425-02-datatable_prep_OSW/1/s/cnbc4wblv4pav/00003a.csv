@@ -1,0 +1,2 @@
+"0","### Check the below output to confirm the filtering steps above worked (if it worked, it won't be in output)"
+"0","Blast_GMGI_edited %>% group_by(ASV_ID) %>% slice_max(pident, n=1) %>% count() %>% filter(n>1)"

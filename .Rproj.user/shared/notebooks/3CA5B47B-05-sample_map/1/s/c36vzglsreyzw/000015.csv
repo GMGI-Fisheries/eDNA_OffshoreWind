@@ -1,0 +1,4 @@
+"0","library(geodata)  # spatial data download
+"
+"2","Error in library(geodata) : there is no package called ‘geodata’
+"

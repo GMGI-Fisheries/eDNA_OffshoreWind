@@ -1,0 +1,20 @@
+"0","data_reads <- read_xlsx(""data/results/Rawreads_matrix.xlsx"") %>%
+  gather(""sampleID"", ""reads"", c(Aug_501_1_B:Sep_VW_S7_S)) %>%
+  
+  ### join with metadata
+  left_join(., meta, by = ""sampleID"") %>%
+  
+  ### calculating total reads 
+  group_by(SampleType, Lease_area, Depth, Month) %>%
+  mutate(total_sum = sum(reads)) %>%
+  
+  ## sum by species name too
+  group_by(SampleType, Lease_area, Depth, Month, Species_name, Common_name, Category) %>%
+  
+  ## sum down column by species name and sample to collapse
+  mutate(spp_reads = sum(reads)) %>%
+  
+  ### calculating relative abundance
+  mutate(rel_ab = spp_reads/total_sum)
+"
+"2","Warning: Detected an unexpected many-to-many relationship between `x` and `y`."

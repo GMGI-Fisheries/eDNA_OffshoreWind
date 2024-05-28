@@ -1,0 +1,4 @@
+"0","meta <- read_xlsx(""data/metadata/full_metadata.xlsx"") %>%"
+"0","  filter(!is.na(Latitude))"
+"0",""
+"0","WindLeaseAreas <- terra::vect(""data/metadata/Wind_lease_areas/Wind_Lease_Outlines_11_16_2023.shp"")"

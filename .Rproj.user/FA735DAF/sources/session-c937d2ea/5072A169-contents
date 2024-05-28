@@ -1,0 +1,69 @@
+# scripts for the course "Mapping and spatial operations in R: using R as a GIS"
+# A. Marcia Barbosa (https://modtools.wordpress.com)
+
+# open this script with RStudio
+
+# the following command sets the working directory to the folder where this script is located:
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+getwd()
+
+# create a folder for the output files of this course:
+dir.create("../outputs")  # '../' goes up one level from the current working directory, so this creates the 'outputs' folder just outside the 'scripts' folder
+
+
+# LOAD REQUIRED PACKAGES ####
+
+library(terra)  # spatial (raster + vector) data analysis and mapping
+library(geodata)  # spatial data download
+library(rnaturalearth)  # more spatial data download
+library(car)  # 'pointLabel' function
+library(ggplot2)
+library(tidyterra)
+
+# library(tidyterra)  # optionally, if you want to use tidyverse functions on 'terra' map attribute tables
+
+
+countries <- terra::vect("../data/World_Countries/TM_WORLD_BORDERS-0.3.shp", extent=c(-124, -62, 25, 47))
+head(countries)
+nrow(countries)
+
+WindLeaseAreas <- terra::vect("Wind_Lease_Outlines_11_16_2023.shp")
+
+PlanningAreas <- terra::vect("BOEM_Wind_Planning_Area_Outlines_11_3_2023.shp")
+
+#pull in site locations
+locations<-read.csv("MassCECSites.csv")
+#remove dropped sites
+locations<-locations[-(34:37),]
+
+
+# setting colors for legend purposed in plot
+colors <- c("Wind Lease Areas" = "black", "Wind Planning Areas" = "orange2")
+
+#Trying with this gg thing
+ggplot(countries) +
+  geom_spatvector(fill="#9FE7C4") +
+
+  #geom_spatvector(countries, fill="#9FE7C4") +
+  geom_spatvector(data=WindLeaseAreas, aes(color="Wind Lease Areas")) +
+  geom_point(data=locations, colour="black", shape=21,size=1.2,aes(fill=Type,x=Longitude,y=Latitude)) +
+
+  xlim(-71.3, -70) +
+  ylim(40.4, 41.5) +
+  #theme_bw() +
+  theme(legend.background = element_rect(colour = 'black', fill = 'white', linetype='solid')) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
+  theme(panel.background = element_rect(color="black", fill="#7BD5E9")) +
+  #labs(color="Offshore Wind Areas") +
+  scale_color_manual(name="Offshore Wind Areas",values=colors) +
+  scale_fill_manual(values=c("blue","yellow")) +
+  #theme(legend.position = c(0.89,0.16)) + 
+  theme(legend.text=element_text(size=4), 
+        legend.title=element_text(size=5),
+        axis.text=element_text(size=5), 
+        axis.title=element_text(size=7)) 
+
+
+
+ggsave(filename="OSWmap_MassCEC.pdf")
+ggsave(filename="OSWmap_MassCEC.jpg", dpi=300)
