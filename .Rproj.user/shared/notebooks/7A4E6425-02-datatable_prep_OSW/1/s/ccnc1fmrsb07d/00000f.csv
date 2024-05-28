@@ -1,6 +1,0 @@
-"0","Blast_Mito <- read.table(path_blast_mito, header=F, col.names = blast_col_headers, colClasses = blast_col_classes) %>%"
-"0","  # renaming sseqid to species name"
-"0","  dplyr::rename(Species_name = sseqid) %>%"
-"0","  "
-"0","  # replacing _ with spaces"
-"0","  mutate(Species_name = gsub(""_"", "" "", Species_name))"

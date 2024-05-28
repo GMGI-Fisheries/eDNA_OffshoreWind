@@ -1,4 +1,0 @@
-"0","## Setting column header names and classes"
-"0","blast_col_headers = c(""ASV_ID"", ""sseqid"", ""pident"", ""length"", ""mismatch"", ""gapopen"","
-"0","                                        ""qstart"", ""qend"", ""sstart"", ""send"", ""evalue"", ""bitscore"")"
-"0","blast_col_classes = c(rep(""character"", 2), rep(""numeric"", 10))"
