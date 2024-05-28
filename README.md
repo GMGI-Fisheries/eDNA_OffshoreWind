@@ -1,9 +1,9 @@
 ## Evaluating the effects of offshore wind development on fisheries biodiversity using eDNA
 
-Emma Strand (1), Dylan Comb (1), John Logan (2), Steve Voss (2), Amanda Davis (2), Tim O’Donnell (1)
+Emma Strand (1), Dylan Comb (1), John Logan (2), Steve Voss (2), Amanda Davis (2), Tim O’Donnell (1)  
 
-(1) Gloucester Marine Genomics Institute, Gloucester, MA, USA
-(2) Massachusetts Division of Marine Fisheries, New Bedford, MA, USA
+(1) Gloucester Marine Genomics Institute, Gloucester, MA, USA  
+(2) Massachusetts Division of Marine Fisheries, New Bedford, MA, USA  
 
 **Abstract** 
 
