@@ -1,0 +1,29 @@
+{
+    "id": "7008B1A6",
+    "path": "C:/Users/EmmaStrand/MyProjects/eDNA_OffshoreWind/scripts/03-relative_abundance_heatmap.Rmd",
+    "project_path": "scripts/03-relative_abundance_heatmap.Rmd",
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1716999840703.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "263,73",
+        "scrollLine": "228",
+        "working_dir": "project",
+        "chunk_output_type": "inline"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1717011318,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1717011318024,
+    "read_only": false,
+    "read_only_alternatives": []
+}
