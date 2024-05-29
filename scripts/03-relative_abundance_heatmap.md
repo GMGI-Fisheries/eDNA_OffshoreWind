@@ -63,6 +63,10 @@ library(ggh4x) ## for facet wrap options
     ## 
     ##     guide_axis_logticks
 
+``` r
+library(tidytext)
+```
+
 # Load relative abundance matrix
 
 ``` r
@@ -70,6 +74,10 @@ meta <- read_xlsx("data/metadata/full_metadata.xlsx")
 
 data <- read_xlsx("data/results/Relative_abundance_longformat.xlsx") %>%
   mutate(across(c(rel_ab), ~ round(.x, 5)))
+
+## creating species list for more categories
+data %>% dplyr::select(Species_name, Common_name, Category) %>% distinct() %>% write_xlsx("data/results/species_list.xlsx")
+
 
 data_reads <- read_xlsx("data/results/Rawreads_matrix.xlsx") %>%
   gather("sampleID", "reads", c(Aug_501_1_B:Sep_VW_S7_S)) %>%
@@ -259,7 +267,20 @@ ggsave("data/results/Heatmap_RELab_surfvbottom.png", width = 17, height = 12)
 Collapsing by lease area
 
 ``` r
+## adding forage fish categories
+add_category <- read_xlsx("data/results/species_list_tod.xlsx") %>% dplyr::rename(category2 = Category)
+
+
+strip_col <- strip_themed(
+     # Horizontal strips
+     background_x = elem_list_rect(fill = c("#0f4c5c", "#e36414", "#fb8b24", "#9a031e", "#5f0f40"), alpha=0.2),
+     text_x = elem_list_text(colour = c("black", "black", "black", "black", "black"),
+                             face = c("bold", "bold", "bold", "bold", "bold")),
+     by_layer_x = FALSE)
+
 data_reads %>% 
+  left_join(., add_category, by = c("Species_name", "Common_name")) %>%
+  
   ### subset data
   filter(!Category == "Other" & !Category == "Livestock" & !Category == "unassigned" & !Category == "Human") %>% 
   subset(Depth == "Bottom") %>%
@@ -273,6 +294,13 @@ data_reads %>%
   ## adding column for lease area x sample type 
   unite(sample_group, Lease_area, SampleType, sep = " ", remove=F) %>%
   
+  ## arranging common name
+  arrange(Common_name) %>%
+  
+  ## mutate
+  mutate(Month = factor(Month, levels = c("July", "August", "September", "October", "November"))) %>%
+  mutate(category2 = factor(category2, levels = c("Elasmobranch", "Forage Fish", "Other Teleost Fish", "Marine Mammal", "Bird", "Sea Turtle"))) %>%
+  
   ## plot
   ggplot(., aes(x=sample_group, y=Common_name)) +
   geom_tile(aes(fill = rel_ab), color = "black") +
@@ -281,13 +309,13 @@ data_reads %>%
   ylab("Common name") +
   xlab("Site") +
   scale_fill_gradient(na.value = "white", low = "lightskyblue2", high = "#0C4D66") + #, direction=1, type = "seq", 
-  theme(axis.text.x = element_text(angle = 45, size=6, color="grey25", hjust = 1),
+  theme(axis.text.x = element_text(angle = 45, size=10, color="grey25", hjust = 1),
         legend.text = element_text(size = 8, color="black"),
         legend.title = element_text(margin = margin(t = 0, r = 0, b = 5, l = 0), size=10, color="black", face="bold"),
         axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0), size=14, face="bold"),
         axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0), size=14, face="bold"),
         axis.text.y = element_text(colour = 'black', size = 8),
-        legend.position = c(-0.28, -0.07),
+        legend.position = c(-0.18, -0.07),
         legend.key.height = unit(5, 'mm'),
         legend.direction = "horizontal",
         legend.key.width = unit(5, 'mm'),
@@ -296,14 +324,12 @@ data_reads %>%
         strip.text.x = element_text(color = "black", face = "bold", size = 12),
         strip.text.y = element_text(color = "black", face = "bold", size = 12, angle=0),
         strip.background.y = element_blank()) +
-    facet_grid2(rows = vars(Category),
-              cols = vars(factor(Month, levels = c("July", "August", "September", "October", "November"))),
-              scales = "free", space = "free", 
-              labeller = labeller(Category = label_wrap_gen(width = 10)))
+facet_grid2(rows = vars(category2), cols = vars(Month), scales = "free",  space = "free", 
+            labeller = labeller( category2 = label_wrap_gen(width = 10)))
 ```
 
 ![](03-relative_abundance_heatmap_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ``` r
-ggsave("data/results/Heatmap_RELab_collapsed_site.png", width = 10, height = 12)
+ggsave("data/results/Heatmap_RELab_collapsed_site.png", width = 14, height = 14)
 ```

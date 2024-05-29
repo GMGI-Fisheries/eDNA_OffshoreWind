@@ -164,14 +164,14 @@ adonis2(data_matrix ~ Month*Depth*SampleType*Lease_area, data = data, method='eu
     ## SampleType                    1    0.373 0.00543  1.8431   0.06 . 
     ## Lease_area                    2    1.871 0.02721  4.6178   0.01 **
     ## Month:Depth                   4    2.411 0.03507  2.9758   0.01 **
-    ## Month:SampleType              4    1.014 0.01474  1.2511   0.14   
-    ## Depth:SampleType              1    0.230 0.00335  1.1371   0.31   
+    ## Month:SampleType              4    1.014 0.01474  1.2511   0.25   
+    ## Depth:SampleType              1    0.230 0.00335  1.1371   0.34   
     ## Month:Lease_area              8    3.263 0.04746  2.0138   0.01 **
-    ## Depth:Lease_area              1    0.313 0.00455  1.5441   0.11   
-    ## SampleType:Lease_area         1    0.301 0.00438  1.4870   0.12   
-    ## Month:Depth:SampleType        4    0.891 0.01295  1.0993   0.41   
-    ## Month:Depth:Lease_area        3    1.039 0.01511  1.7096   0.03 * 
-    ## Month:SampleType:Lease_area   4    0.665 0.00967  0.8207   0.75   
+    ## Depth:Lease_area              1    0.313 0.00455  1.5441   0.12   
+    ## SampleType:Lease_area         1    0.301 0.00438  1.4870   0.20   
+    ## Month:Depth:SampleType        4    0.891 0.01295  1.0993   0.29   
+    ## Month:Depth:Lease_area        3    1.039 0.01511  1.7096   0.02 * 
+    ## Month:SampleType:Lease_area   4    0.665 0.00967  0.8207   0.66   
     ## Residual                    189   38.280 0.55682                  
     ## Total                       227   68.747 1.00000                  
     ## ---
@@ -189,12 +189,12 @@ adonis2(bottom_noSF_matrix ~ Month*SampleType*Lease_area, data = bottom_noSF, me
     ## adonis2(formula = bottom_noSF_matrix ~ Month * SampleType * Lease_area, data = bottom_noSF, permutations = 99, method = "eu")
     ##                              Df SumOfSqs      R2       F Pr(>F)   
     ## Month                         4   13.506 0.30246 17.5295   0.01 **
-    ## SampleType                    1    0.250 0.00560  1.2971   0.19   
+    ## SampleType                    1    0.250 0.00560  1.2971   0.22   
     ## Lease_area                    1    1.161 0.02599  6.0260   0.01 **
-    ## Month:SampleType              4    0.737 0.01650  0.9563   0.45   
-    ## Month:Lease_area              4    1.661 0.03720  2.1559   0.01 **
-    ## SampleType:Lease_area         1    0.286 0.00641  1.4859   0.19   
-    ## Month:SampleType:Lease_area   4    0.665 0.01489  0.8630   0.51   
+    ## Month:SampleType              4    0.737 0.01650  0.9563   0.55   
+    ## Month:Lease_area              4    1.661 0.03720  2.1559   0.04 * 
+    ## SampleType:Lease_area         1    0.286 0.00641  1.4859   0.18   
+    ## Month:SampleType:Lease_area   4    0.665 0.01489  0.8630   0.63   
     ## Residual                    137   26.388 0.59096                  
     ## Total                       156   44.653 1.00000                  
     ## ---
@@ -213,8 +213,8 @@ adonis2(bottom_REV_matrix ~ Month*SampleType, data = bottom_REV, method='eu', pe
     ## adonis2(formula = bottom_REV_matrix ~ Month * SampleType, data = bottom_REV, permutations = 99, method = "eu")
     ##                   Df SumOfSqs      R2       F Pr(>F)   
     ## Month              4  12.1018 0.38754 16.4452   0.01 **
-    ## SampleType         1   0.3182 0.01019  1.7296   0.13   
-    ## Month:SampleType   4   0.5940 0.01902  0.8072   0.63   
+    ## SampleType         1   0.3182 0.01019  1.7296   0.10 . 
+    ## Month:SampleType   4   0.5940 0.01902  0.8072   0.70   
     ## Residual          99  18.2132 0.58325                  
     ## Total            108  31.2272 1.00000                  
     ## ---
@@ -233,8 +233,8 @@ adonis2(bottom_VW_matrix ~ Month*SampleType, data = bottom_VW, method='eu', perm
     ## adonis2(formula = bottom_VW_matrix ~ Month * SampleType, data = bottom_VW, permutations = 99, method = "eu")
     ##                  Df SumOfSqs      R2      F Pr(>F)   
     ## Month             4   3.1032 0.25314 3.6064   0.01 **
-    ## SampleType        1   0.1920 0.01566 0.8926   0.62   
-    ## Month:SampleType  4   0.7890 0.06436 0.9169   0.59   
+    ## SampleType        1   0.1920 0.01566 0.8926   0.43   
+    ## Month:SampleType  4   0.7890 0.06436 0.9169   0.62   
     ## Residual         38   8.1745 0.66683                 
     ## Total            47  12.2587 1.00000                 
     ## ---
@@ -247,34 +247,34 @@ vare.mds <- metaMDS(bottom_noSF_matrix, distance = "bray")
 ```
 
     ## Run 0 stress 0.2305453 
-    ## Run 1 stress 0.2225199 
+    ## Run 1 stress 0.2385322 
+    ## Run 2 stress 0.2306189 
+    ## ... Procrustes: rmse 0.04604098  max resid 0.2591664 
+    ## Run 3 stress 0.2219132 
     ## ... New best solution
-    ## ... Procrustes: rmse 0.03826832  max resid 0.2572191 
-    ## Run 2 stress 0.2485892 
-    ## Run 3 stress 0.2379778 
-    ## Run 4 stress 0.2300232 
-    ## Run 5 stress 0.235221 
-    ## Run 6 stress 0.223545 
-    ## Run 7 stress 0.2244415 
-    ## Run 8 stress 0.2353282 
-    ## Run 9 stress 0.2410365 
-    ## Run 10 stress 0.2267522 
-    ## Run 11 stress 0.225436 
-    ## Run 12 stress 0.2261747 
-    ## Run 13 stress 0.2366577 
-    ## Run 14 stress 0.2341301 
-    ## Run 15 stress 0.223079 
-    ## Run 16 stress 0.222382 
-    ## ... New best solution
-    ## ... Procrustes: rmse 0.01651421  max resid 0.1488056 
-    ## Run 17 stress 0.2310061 
-    ## Run 18 stress 0.2219138 
-    ## ... New best solution
-    ## ... Procrustes: rmse 0.01542382  max resid 0.1591757 
-    ## Run 19 stress 0.2374449 
-    ## Run 20 stress 0.2407659 
+    ## ... Procrustes: rmse 0.03878119  max resid 0.2563417 
+    ## Run 4 stress 0.2311838 
+    ## Run 5 stress 0.2351702 
+    ## Run 6 stress 0.2219786 
+    ## ... Procrustes: rmse 0.006951184  max resid 0.08533041 
+    ## Run 7 stress 0.2393454 
+    ## Run 8 stress 0.2303233 
+    ## Run 9 stress 0.2301549 
+    ## Run 10 stress 0.2240029 
+    ## Run 11 stress 0.2319168 
+    ## Run 12 stress 0.2292906 
+    ## Run 13 stress 0.2358205 
+    ## Run 14 stress 0.2312045 
+    ## Run 15 stress 0.2286887 
+    ## Run 16 stress 0.2400275 
+    ## Run 17 stress 0.2297627 
+    ## Run 18 stress 0.2298018 
+    ## Run 19 stress 0.2316352 
+    ## Run 20 stress 0.2402032 
     ## *** Best solution was not repeated -- monoMDS stopping criteria:
-    ##     20: stress ratio > sratmax
+    ##      1: no. of iterations >= maxit
+    ##     16: stress ratio > sratmax
+    ##      3: scale factor of the gradient < sfgrmin
 
 ``` r
 data.scores <- as.data.frame(scores(vare.mds)$sites) %>%
@@ -431,23 +431,56 @@ alpha_df %>%
 
 ``` r
 ggsave("data/results/species_richness.png", width=10, height=5)
+
+alpha_df %>%
+  mutate(Month = factor(Month, levels = c("July", "August", "September", "October", "November"))) %>%
+  filter(!is.na(Lease_area)) %>%
+  unite(sample_group, Lease_area, SampleType, sep = " ", remove=F) %>%
+  
+  ggplot(., aes(x=Month, y=richness)) +
+    theme_bw() +
+    xlab("Month") + 
+    ylab("Species Richness") + 
+    geom_boxplot(aes(fill=sample_group), alpha=0.6, outlier.shape = NA) + 
+    geom_jitter(aes(fill=sample_group, shape=Lease_area), size=2, color="black", alpha=0.75, width=0.2) +
+  #labs(shape = "Lease area", fill = "Lease area") +
+  facet_wrap(~sample_group, ncol=5, labeller = label_wrap_gen(width = 16)) +
+  scale_fill_manual(values = c("white", "#264653", "#2a9d8f", "white", "#e9c46a"), name = "Lease Area") +
+  scale_shape_manual(values = c(21,24,22)) +
+   theme(
+    axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0), size=10, face="bold"),
+    axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0), size=10, face="bold"),
+    axis.text.y = element_text(colour = 'black', size = 10),
+    axis.text.x = element_text(angle = 45, size=6, color="grey25", hjust = 1),
+    legend.title = element_text(margin = margin(t = 0, r = 0, b = 5, l = 0), size=10, color="black", face="bold"),
+    strip.text.x = element_text(color = "black", face = "bold", size = 10),
+    strip.background = element_rect(color= "black", fill = "white"),
+    legend.position = "none"
+  )
+```
+
+![](04-biodiversity_statistics_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->
+
+``` r
+ggsave("data/results/species_richness_bysite.png", width=10, height=5)
 ```
 
 ``` r
-alpha_df <- alpha_df %>%
-  unite(sample_group, Lease_area, SampleType, sep = " ", remove=F) 
+alpha_df_stats <- alpha_df %>%
+  unite(sample_group, Lease_area, SampleType, sep = " ", remove=F) %>%
+  subset(sample_group == "Vineyard Wind 1 Control")
 
-aov <- aov(richness ~ Month, data = alpha_df)
+aov <- aov(richness ~ Month, data = alpha_df_stats)
 Anova(aov, type = "III")
 ```
 
     ## Anova Table (Type III tests)
     ## 
     ## Response: richness
-    ##             Sum Sq  Df  F value    Pr(>F)    
-    ## (Intercept) 3081.1   1 195.1316 < 2.2e-16 ***
-    ## Month        481.6   4   7.6251 1.168e-05 ***
-    ## Residuals   2589.6 164                       
+    ##              Sum Sq Df F value   Pr(>F)   
+    ## (Intercept) 147.000  1 18.0000 0.002827 **
+    ## Month        58.667  4  1.7959 0.222906   
+    ## Residuals    65.333  8                    
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -477,8 +510,8 @@ adonis2(data_SvB_matrix ~ Month*Lease_area*Depth, data = data_SvB, method='eu', 
     ## Depth                    1    0.996 0.02764 4.4225   0.01 **
     ## Month:Lease_area         4    1.585 0.04399 1.7594   0.01 **
     ## Month:Depth              4    2.017 0.05598 2.2392   0.01 **
-    ## Lease_area:Depth         1    0.336 0.00932 1.4909   0.14   
-    ## Month:Lease_area:Depth   3    1.098 0.03047 1.6250   0.03 * 
+    ## Lease_area:Depth         1    0.336 0.00932 1.4909   0.13   
+    ## Month:Lease_area:Depth   3    1.098 0.03047 1.6250   0.02 * 
     ## Residual               100   22.519 0.62506                 
     ## Total                  118   36.028 1.00000                 
     ## ---
@@ -489,30 +522,31 @@ vare.mds_SvB <- metaMDS(data_SvB_matrix, distance = "bray")
 ```
 
     ## Run 0 stress 0.2333951 
-    ## Run 1 stress 0.2301099 
+    ## Run 1 stress 0.2389162 
+    ## Run 2 stress 0.2434082 
+    ## Run 3 stress 0.2342183 
+    ## Run 4 stress 0.2342936 
+    ## Run 5 stress 0.2473212 
+    ## Run 6 stress 0.2415531 
+    ## Run 7 stress 0.233016 
     ## ... New best solution
-    ## ... Procrustes: rmse 0.06403664  max resid 0.2867282 
-    ## Run 2 stress 0.235002 
-    ## Run 3 stress 0.2318775 
-    ## Run 4 stress 0.2464028 
-    ## Run 5 stress 0.2434389 
-    ## Run 6 stress 0.2392106 
-    ## Run 7 stress 0.2331346 
-    ## Run 8 stress 0.2350292 
-    ## Run 9 stress 0.2472531 
-    ## Run 10 stress 0.234863 
-    ## Run 11 stress 0.2422027 
-    ## Run 12 stress 0.2322118 
-    ## Run 13 stress 0.2449404 
-    ## Run 14 stress 0.2395825 
-    ## Run 15 stress 0.2299554 
+    ## ... Procrustes: rmse 0.04100606  max resid 0.2498842 
+    ## Run 8 stress 0.2333269 
+    ## ... Procrustes: rmse 0.04664914  max resid 0.2636221 
+    ## Run 9 stress 0.2358578 
+    ## Run 10 stress 0.2355003 
+    ## Run 11 stress 0.2450391 
+    ## Run 12 stress 0.2433568 
+    ## Run 13 stress 0.2430579 
+    ## Run 14 stress 0.2392529 
+    ## Run 15 stress 0.2295971 
     ## ... New best solution
-    ## ... Procrustes: rmse 0.05131039  max resid 0.3011821 
-    ## Run 16 stress 0.2367656 
-    ## Run 17 stress 0.230593 
-    ## Run 18 stress 0.2318294 
-    ## Run 19 stress 0.236919 
-    ## Run 20 stress 0.2442865 
+    ## ... Procrustes: rmse 0.06212441  max resid 0.3107799 
+    ## Run 16 stress 0.2356291 
+    ## Run 17 stress 0.2376497 
+    ## Run 18 stress 0.2405856 
+    ## Run 19 stress 0.2329632 
+    ## Run 20 stress 0.2438165 
     ## *** Best solution was not repeated -- monoMDS stopping criteria:
     ##      2: no. of iterations >= maxit
     ##     18: stress ratio > sratmax
